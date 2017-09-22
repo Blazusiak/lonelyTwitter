@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by jblaz on 2017-09-14.
  */
 
-/*public class SadMood extends Mood{
+public class SadMood extends Mood{
     public SadMood(){
         super();
     }
@@ -18,4 +18,4 @@ import java.util.Date;
     public String isSadMood(){
         return "Sad";
     }
-}*/
+}
