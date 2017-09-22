@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by jblaz on 2017-09-14.
  */
 
-/*public class HappyMood extends Mood{
+public class HappyMood extends Mood{
     public HappyMood(){
         super();
     }
@@ -15,7 +15,7 @@ import java.util.Date;
     }
 
     @Override
-    public String isHappyMood(){
+    public String getMood(){
         return "Happy";
-    } {
-}*/
+    }
+}
