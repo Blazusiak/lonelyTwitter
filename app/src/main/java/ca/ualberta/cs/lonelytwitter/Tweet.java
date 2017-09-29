@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Represents a Tweet
  *
  * @author Jacob Blazusiak
- * @Version 1.5
+ * @version 1.5
  * @see NormalTweet
  * @see ImportantTweet
  * @since 1.0
