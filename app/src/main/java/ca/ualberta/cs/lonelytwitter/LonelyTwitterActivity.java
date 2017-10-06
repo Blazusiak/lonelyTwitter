@@ -34,8 +34,6 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayList<NormalTweet> tweetList = new ArrayList<NormalTweet>();
 	private ArrayAdapter<NormalTweet> adapter;
 
-
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +41,7 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
-		Button clearButton = (Button) findViewById(R.id.clear);
+		Button searchButton = (Button) findViewById(R.id.search);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -60,15 +58,35 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 
-		clearButton.setOnClickListener(new View.OnClickListener() {
+//		clearButton.setOnClickListener(new View.OnClickListener() {
+//
+//			public void onClick(View v) {
+//				setResult(RESULT_OK);
+//				tweetList.clear();
+//				deleteFile(FILENAME);  // TODO deprecate this button
+//				adapter.notifyDataSetChanged();
+//			}
+//		});
+		searchButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				tweetList.clear();
-				deleteFile(FILENAME);  // TODO deprecate this button
-				adapter.notifyDataSetChanged();
+				String text = bodyText.getText().toString();
+				String query = "{\n" + " \"query\": { \"term\": {\"message\":\"" + text + "\"} }\n" + "}";
+				ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
+				getTweetsTask.execute(query);
+				try {
+					tweetList = getTweetsTask.get();
+				}
+				catch (Exception e) {
+					Log.i("Error", "Failed to get the tweets from the async object");
+				}
+
+				adapter = new ArrayAdapter<NormalTweet>(LonelyTwitterActivity.this, R.layout.list_item, tweetList);
+				oldTweetsList.setAdapter(adapter);
 			}
 		});
+
 
 
 	}
