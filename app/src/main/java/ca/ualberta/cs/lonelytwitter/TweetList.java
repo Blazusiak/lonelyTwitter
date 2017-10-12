@@ -23,8 +23,9 @@ public class TweetList {
     public void delete(Tweet tweet) {
         tweets.remove(tweet);
     }
-//
-//    public Integer getCount() {
-//
-//    }
+
+    public Tweet getTweet(int index) {
+        return tweets.get(index);
+    }
+
 }
