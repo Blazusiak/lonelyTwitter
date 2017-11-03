@@ -9,11 +9,12 @@ import com.google.gson.Gson;
 
 public class EditTweetActivity extends Activity {
 
-    private Intent intent;
-    private NormalTweet tweet;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final Intent intent;
+        final NormalTweet tweet;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_tweet);
 
